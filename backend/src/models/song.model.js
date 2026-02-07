@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const userSchema = new mongoose.Schema({
+const songSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -34,4 +34,4 @@ const userSchema = new mongoose.Schema({
     timestamps: true // Automatically adds createdAt and updatedAt fields
 });
 
-export const Song = mongoose.model("Song", songSchemaSchema);
+export const Song = mongoose.model("Song", songSchema);

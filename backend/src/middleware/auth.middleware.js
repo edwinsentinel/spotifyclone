@@ -1,5 +1,7 @@
 import { clerkClient } from "@clerk/express";
 
+
+// Middleware to protect routes and ensure the user is authenticated
 export const protectRoute = async (req, res, next) => {
     const { userId } = await clerkClient.users.getUser(req.body.userId);
     if (!req.auth.userId) {
@@ -8,7 +10,7 @@ export const protectRoute = async (req, res, next) => {
     next();
 };
 
-
+// Middleware to check if the user is an admin
 export const requireAdmin = (req, res, next) => {
     try {
         const currentUser = clerkClient.users.getUser(req.body.userId);
@@ -19,6 +21,6 @@ export const requireAdmin = (req, res, next) => {
         next();
     } catch (error) {
         console.error("Error in requireAdmin middleware:", error);
-        res.status(500).json({ message: "Internal server error" }); 
+       next(error); // Pass the error to the error handling middleware
     }
 };

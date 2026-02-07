@@ -1,7 +1,7 @@
 import {User} from "../models/User.model.js";
 
 
-export const authcallback = async (req,res)=>{
+export const authcallback = async (req,res,next)=>{
     try {
         const {id,firstName,lastName,imageUrl} = req.body ;
 
@@ -19,6 +19,6 @@ export const authcallback = async (req,res)=>{
 
     } catch (error) {
         console.error("Error in /callback route:", error);
-        res.status(500).json({message:"Internal server error"}) ;
+        next(error) ; // Pass the error to the error handling middleware
     }
     }
