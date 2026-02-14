@@ -1,4 +1,4 @@
-import Song from "../models/song.model.js";
+import {Song} from "../models/song.model.js";
 
 
 // Example controller function for getting all songs
